@@ -39,7 +39,7 @@
 <body>
 <div id="head">
 	<p>
-		Welcome to the <a href="http://arc.semsol.org/">ARC2</a> Installer. In the following we will together set up ARC2 along with a SPARQL endpoint.
+		Welcome to the <a href="http://arc.semsol.org/">ARC2</a> Installer. In the following we will together set up ARC2.
 	</p>
 	<button id="step">START!</button> <button id="skip">Skip this step ...</button> <button id="restart">Restart</button>
 </div>
@@ -49,15 +49,15 @@
 		<div id="create-db-pane-in">
 			<form>
 				<fieldset>
-					<legend>Database settings</legend>
-					<label for="db-host">database host:</label> <input type="text" id="db-host" name="db-host" value="localhost:8889" size="50"><br />
-					<label for="db-name">database name:</label> <input type="text" id="db-name" name="db-name" value="arc2base" size="20"><br />
+					<legend>MySQL database settings</legend>
+					<label for="db-host">database host:</label> <input type="text" id="db-host" name="db-host" value="localhost" size="50"><br />
+					<label for="db-name">database name:</label> <input type="text" id="db-name" name="db-name" value="arc2-test" size="20"><br />
 					<label for="db-user">user name:</label> <input type="text" id="db-user" name="db-user" value="root" size="10"><br />
 					<label for="db-pwd">password:</label> <input type="text" id="db-pwd" name="db-pwd" value="root" size="10"><br />
 				</fieldset>
 			</form>
 			<p class="note">
-			Note that these are the default values. I'm guessing you're running the database on <em>localhost</em> (port <em>8889</em>). If this is not the case, you need to tell me where the database is available. It might be a good idea to create a dedicated ARC2 user later on with phpMyadmin or the like, especially if you're using this system on the Web. If the database does not exist yet, I'm gonna create it for you.
+			Note that these are the default values. I'm guessing you're running the database on <em>localhost</em>. If this is not the case, you need to tell me where the database is available (e.g. <em>server:8889</em>). It might be a good idea to create a dedicated ARC2 user later on with phpMyadmin or the like, especially if you're using this system on the Web. If the database does not exist yet, I'm gonna create it for you.
 			</p>
 		</div>
 		<div id="create-db-pane-out"></div>
@@ -69,7 +69,6 @@
 				<fieldset>
 					<legend>RDF store settings</legend>
 					<label for="store-name">store name</label> <input type="text" id="store-name" name="store-name" value="sandbox" size="20"><br />
-					<input type="checkbox" id="store-endpoint" checked="checked" /> create SPARQL endpoint (strongly advised to use)
 				</fieldset>
 			</form>
 			<p class="note">
@@ -77,31 +76,42 @@
 			</p>
 		</div>
 		<div id="create-store-pane-out">
-			<p>I tried to create the store you requested - now let's see if it works. If you have already created a SPARQL endpoint just past the following snippet into a file, save it as <code>sparql.php</code>, replace the default values with your own values and visit the page in your browser:</p>
-			<pre>
-				&lt;?php
+			<p>I tried to create the store you requested - now let's see if it works. Just paste the following snippet into the file <code>config.php</code> and replace the default values with your own values.</p>
+<pre>
+&lt;?php
 
-				include_once("../arc/ARC2.php"); // the path to the ARC2.php file
+include_once(dirname(__FILE__).'/arc/ARC2.php'); // path to the file ARC2.php
 
-				$config = array(
-				  'db_host' => 'localhost',
-				  'db_name' => 'arc2',
-				  'db_user' => 'root',
-				  'db_pwd' => 'root',
-				  'store_name' => 'sandbox'
-				);
+// SQL database configuration for storing the postings:
+$arc_config = array(
+  /* MySQL database settings */
+  'db_host' => 'localhost',
+  'db_user' => 'root',
+  'db_pwd' => 'root',
+  'db_name' => 'arc2-test',
 
-				/* instantiation */
-				$ep = ARC2::getStoreEndpoint($config);
+  /* ARC2 store settings */
+  'store_name' => 'sandbox',
 
-				/* request handling */
-				$ep->go();
-				?&gt;
-			</pre>	
+  /* SPARQL endpoint settings */
+  'endpoint_features' => array(
+    'select', 'construct', 'ask', 'describe', // allow read
+    'load', 'insert', 'delete',               // allow update
+    'dump'                                    // allow backup
+  ),
+  'endpoint_timeout' => 60, /* not implemented in ARC2 preview */
+  'endpoint_read_key' => '', /* optional */
+  'endpoint_write_key' => '', /* optional */
+  'endpoint_max_limit' => 250, /* optional */
+);
+
+?&gt;
+</pre>	
 		</div>
 	</div>
 	<div id="done-pane">
-	<p>Congrats! You have successfully set up ARC2 and can use it now.</p>
+	<p>Congrats! You have successfully set up ARC2 and can 
+                <a href="..">use it now</a>.</p>
 	</div>
 </div>
 </body>

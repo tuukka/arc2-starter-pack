@@ -1,6 +1,6 @@
 <?php
             
-include_once('../ARC2.php');
+include_once('../arc/ARC2.php');
   
 $DEBUG = false;
 
@@ -61,7 +61,6 @@ function createStore(){
 	$user = $_GET['user'];
 	$pwd = $_GET['pwd'];
 	$store =  $_GET['store'];
-	$endpoint = $_GET['endpoint'];
 	
 	$config = array(
 	  'db_host' => $host,
@@ -70,10 +69,6 @@ function createStore(){
 	  'db_pwd' => $pwd,
 	  'store_name' => $store
 	);
-	
-	if ($endpoint == "yes") {
-		array_push($config, 'endpoint_features', array( 'select', 'ask', 'construct', 'load', 'insert', 'delete')); 
-	}		
 	
 	$store = ARC2::getStore($config);
 
