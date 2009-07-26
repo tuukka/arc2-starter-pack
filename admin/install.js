@@ -56,10 +56,11 @@ function createDB(){
 	var user = $("#db-user").val();
 	var pwd = $("#db-pwd").val();
 
+	$("#create-db-pane-in").hide("normal");
+	$("#create-db-pane-out").show("normal");
+
 	$.get("install.php?cmd=create-db&host="+urlencode(host)+"&name="+name+"&user="+user+"&pwd="+pwd+getCacheBusterParam(), function(data){
-		$("#create-db-pane-in").hide("normal");
 		$("#create-db-pane-out").html(data);
-		$("#create-db-pane-out").show("normal");
 	});
 }
 
@@ -78,9 +79,8 @@ function createStore(){
 	$("#create-store-pane-out").show("normal");
 	
 	$.get("install.php?cmd=create-store&host="+urlencode(host)+"&name="+name+"&user="+user+"&pwd="+pwd+"&store="+store+"&endpoint="+endpoint+getCacheBusterParam(), function(data){
-		// this should work but I get a 500 from the server after the store has been created ...
+		$("#create-store-pane-out").html(data);
 	});
-	
 }
 
 function log(msg){
