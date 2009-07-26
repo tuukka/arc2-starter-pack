@@ -1,0 +1,68 @@
+body {
+	font-family: Verdana;
+	font-size: 14px;
+}
+
+h1 {
+	font-size: 24px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+.note {
+	font-size: 12px;
+	font-style: italic;
+}
+
+form {
+	padding: 10px;
+}
+
+input {
+	margin: 5px;
+}
+
+#head {
+	position: fixed; 
+	padding: 10px; 
+	top: 50px;
+	right: 100px;
+	left: 100px;	 
+	background: #f0f0f0; 
+	border: 1px solid #e0e0e0;
+}
+
+#main {
+	position: fixed; 
+	padding: 10px; 
+	top: 200px;
+	right: 100px;
+	left: 100px;	 
+}
+
+#create-db-pane, #create-db-pane-out, #create-store-pane, #create-store-pane-out, #done-pane, #skip, #restart {
+	display: none;
+}
+
+#console {
+	position: fixed; 
+	padding: 10px; 
+	bottom: 20px;
+	right: 100px;
+	left: 100px;	 
+	background: #f0f0f0; 
+	border: 1px solid #e0e0e0;
+	font-size: 12px;
+}
+
+#status {
+	position: fixed; 
+	padding: 10px; 
+	bottom: 10px;
+	right: 100px;	 
+	font-size: 6px;	
+}
+
+

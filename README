@@ -1,0 +1,46 @@
+
+Requirements
+------------
+
+1. You need to have
+  - a WWW server with PHP5 or PHP4.3 or higher.
+  - MySQL 4.0.4 or higher.
+
+
+Installation
+------------
+
+1. Download ARC2 (http://arc.semsol.org) and unzip it.
+  - Eg. http://arc.semsol.org/download/2009/03/05/arc.zip
+
+2. Edit the parameters in config.php.
+
+3. Create the database with the name you used for db_name in the config.
+  - Either use a graphical MySQL administration interface such as phpmyadmin,
+  - Or run the following command in the shell:
+    mysql -h localhost -u config_db_user -p -e "create database config_db_name;"
+
+4. Move this 'arc2sparql' directory to a web server directory.
+
+5. You can restrict access to the SPARQL server using the following methods:
+
+  a) You can set read and write API keys that clients need to match.
+    - Edit config.php and set endpoint_*_keys to something hard to guess.
+
+  b) Add access control rules (password, IP address) to a .htaccess file.
+
+6. That's all! You can now access endpoint.php with a web browser.
+
+
+Example .htaccess file for controlling access
+---------------------------------------------
+
+To restrict who can access the SPARQL endpoint by IP address, you can put 
+the following lines (please adjust accordinly) into .htaccess:
+
+Order deny,allow
+Deny from all
+
+# List IP addresses of the clients that should be allowed 
+Allow from 127.0.0.1 # localhost, ie. access from the same machine
+Allow from 194.187.213.68 # tuukka.iki.fi
