@@ -92,7 +92,7 @@ making sure that <code>&lt;?php</code> is the first line:
 include_once(dirname(__FILE__).'/arc/ARC2.php'); // path to the file ARC2.php
 
 // SQL database configuration for storing the postings:
-$arc_config = array(
+\$arc_config = array(
   /* MySQL database settings */
   'db_host' => '$host',
   'db_user' => '$user',
