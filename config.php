@@ -24,6 +24,3 @@ $arc_config = array(
   'endpoint_write_key' => '', /* optional */
   'endpoint_max_limit' => 250, /* optional */
 );
-
-?>
-

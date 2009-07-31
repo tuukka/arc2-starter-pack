@@ -83,7 +83,8 @@ function createStore(){
 		print "The store was already set up.";
 	}
 	print "
-<p>Now just paste the following snippet into the file <code>config.php</code>.
+<p>Now just paste the following snippet into the file <code>config.php</code>,
+making sure that <code>&lt;?php</code> is the first line:
 </p>
 <pre>
 &lt;?php
@@ -112,8 +113,6 @@ $arc_config = array(
   'endpoint_write_key' => '', /* optional */
   'endpoint_max_limit' => 250, /* optional */
 );
-
-?&gt;
 </pre>";
 
 }
